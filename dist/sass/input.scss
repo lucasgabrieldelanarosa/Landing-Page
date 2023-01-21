@@ -1,0 +1,107 @@
+@use 'modules/forward' as index;
+
+*, *::before, *::after{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+.header{
+    @include index.flex(row, space-between, center, null);
+    background-color: index.$header-bg-color;
+    padding: 1% 3%;
+    width: 100%;
+    position: fixed;
+    min-height: 15vh;
+
+    &-title{
+        font-family: index.$font-logo;
+        font-size: 3vw;
+        color: index.$logo-color;
+    }
+
+    &-nav{
+        @include index.flex(row, center, center, 1rem);
+
+        &-aBtn{
+            @include index.flex(null, center, center, null);
+            font-family: index.$font-nav;
+            font-weight: 800;
+            font-size: 1.5vw;   
+            color: index.$nav-btn-color;
+            padding: 1%;
+            width: 8vw;
+            background: none;
+            border: none;
+            text-decoration: underline;
+
+            &:hover{
+                cursor: pointer;
+                background-color: index.$header-btn-bg-color-hover;
+                color: index.$nav-btn-color-hover;
+                border-radius: 15px;
+            }
+        }
+    }
+}
+
+.main{
+    @include index.flex(column, center, center, null);
+    background-image: linear-gradient(45deg, index.$primary-blue-color, index.$primary-pink-color);
+
+    &-section-home{
+        @include index.flex(null, center, center, null);
+        min-height: 100vh;
+        width: 100%;
+        
+        h1{
+            @include index.flex(null, center, center, null);
+            font-family: index.$font-title;
+            color: index.$title-color;
+            font-size: 6vw;
+            padding: 2%; // Debug on the font-family
+        }
+    }
+
+    &-section-skills{       
+        @include index.flex(column, null, center, 0.5rem);
+        background-color: index.$section-skills-bg-color;
+        min-height: 85vh;
+        width: 100%;
+        font-size: 3vw;
+        font-family: index.$font-title;
+        padding-bottom: 5%;
+        
+        .skills-grid-container{
+            background-color: index.$skills-grid-container-bg-color;
+            box-shadow: index.$skills-grid-container-box-shadow;
+            padding: 3% 5%;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+
+            .skill-container{
+                @include index.flex(column, center, center, 0.5rem);
+                font-size: 1.5vw;
+                font-family: index.$font-nav;
+                font-weight: 800;
+
+                .skill-img{
+                    filter: grayscale(.75);
+                    height: 10vh;
+                    transition: scale 0.5s, filter 1s;
+
+                    &:hover{
+                        filter: grayscale(0);
+                        scale: 1.2;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}
